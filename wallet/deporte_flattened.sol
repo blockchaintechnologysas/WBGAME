@@ -3,7 +3,7 @@
 //*********************************************************************
 // BLOCKCHAIN TECHNOLOGY SOLUTIONS AND ARTIFICIAL INTELLIGENCE AI S.A.S
 //*********************************************************************
-//# locked Fondo 12 meses, para el Deporte de WB GAME METAVERSO
+//# locked Fondo(1%) 12 meses, para el Deporte de WB GAME METAVERSO
 
 // OpenZeppelin Contracts (last updated v4.6.0) (token/ERC20/IERC20.sol)
 
