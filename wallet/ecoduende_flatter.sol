@@ -93,7 +93,7 @@ interface IERC20 {
 pragma solidity ^0.8.0;
 
 
-contract AdminBatchSender {
+contract Ecoduende_WBGAME {
     address public owner;
     uint256 public deploymentTime;
     uint256 public constant TIEMPO_ESPERA = 12 * 30 days * 24 hours; // 12 meses en segundos
