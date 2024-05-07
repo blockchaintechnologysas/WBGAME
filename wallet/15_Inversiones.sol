@@ -93,7 +93,7 @@ interface IERC20 {
 pragma solidity ^0.8.0;
 
 
-contract Sueldos {
+contract Inversiones {
     address public owner;
     uint256 public deploymentTime;
     uint256 public constant TIEMPO_ESPERA = 1; // 12 meses en segundos
