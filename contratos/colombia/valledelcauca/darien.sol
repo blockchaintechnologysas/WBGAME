@@ -16,20 +16,20 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.6.0/contr
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.6.0/contracts/access/Ownable.sol";
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.6.0/contracts/utils/Strings.sol";
 
-contract Licencia_CO_VA_Yotoco is ERC721Enumerable, Ownable {
+contract Licencia_CO_VA_Darien is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
     // Variable para el máximo número de licencias permitidas
-    uint256 public constant MAX_LICENSES = 373000000; // Cambia este valor según tu necesidad
+    uint256 public constant MAX_LICENSES = 1527000000; // Cambia este valor según tu necesidad
     // Constantes para definir valores específicos
-    uint256 public MAX_AMOUNT = 500000; // Cambia este valor según tu necesidad
-    uint256 private constant DEFAULT_VESES = 10; // Cambia este valor según tu necesidad
+    uint256 public MAX_AMOUNT = 300000; // Cambia este valor según tu necesidad
+    uint256 private constant DEFAULT_VESES = 500; // Cambia este valor según tu necesidad
     // Precio en COP de una licencia
-    uint256 private LICENSE_PRICE = 10000 ether;
+    uint256 private LICENSE_PRICE = 100 ether;
 
     // Rango de licencias para Darien (Valle del Cauca)
-    uint256 private constant YOTOCO_MIN = 1;
-    uint256 private constant YOTOCO_MAX = 373000000;
+    uint256 private constant RANGO_MIN = 373000001;
+    uint256 private constant RANGO_MAX = 1900000000;
     
     // Variable para llevar el registro de cuántas licencias se han creado
     uint256 private licensesCreated;
@@ -49,7 +49,7 @@ contract Licencia_CO_VA_Yotoco is ERC721Enumerable, Ownable {
     event LicensePurchased(address indexed user, uint256 tokenId);
 
     // Constructor del contrato
-    constructor(address _TokenCOP, address _TokenWBG, address _walletCOP) ERC721("Licencia Yotoco", "Lic_Yotoco") {
+    constructor(address _TokenCOP, address _TokenWBG, address _walletCOP) ERC721("Licencia Darien", "Lic_Darien") {
         copAddress = _TokenCOP;
         otherTokenAddress = _TokenWBG;
         walletCop = _walletCOP;
@@ -99,7 +99,7 @@ contract Licencia_CO_VA_Yotoco is ERC721Enumerable, Ownable {
 
             // Incrementar el contador de licencias creadas
             licensesCreated++;
-            consecutivo=licensesCreated+YOTOCO_MIN;
+            consecutivo=licensesCreated+RANGO_MIN;
 
             // Emitir el evento de compra de licencia
             emit LicensePurchased(msg.sender, tokenId);
@@ -157,13 +157,13 @@ contract Licencia_CO_VA_Yotoco is ERC721Enumerable, Ownable {
     function getNextTokenId() view private returns (uint256) {
         uint256 nextTokenId = licensesCreated + 1;
 
-        // Verificar si la nueva licencia está en el rango de Yotoco
-        if (nextTokenId >= YOTOCO_MIN && nextTokenId <= YOTOCO_MAX) {
+        // Verificar si la nueva licencia está en el rango
+        if (nextTokenId >= RANGO_MIN && nextTokenId <= RANGO_MAX) {
             // Si es así, devolver el número de token directamente
             return nextTokenId;
         } else {
-            // En otro caso, buscar el siguiente número de token en el rango de Yotoco
-            for (uint256 i = YOTOCO_MIN; i <= YOTOCO_MAX; i++) {
+            // En otro caso, buscar el siguiente número de token en el rango
+            for (uint256 i = RANGO_MIN; i <= RANGO_MAX; i++) {
                 if (!_exists(i)) {
                     return i;
                 }
@@ -191,15 +191,15 @@ contract Licencia_CO_VA_Yotoco is ERC721Enumerable, Ownable {
     string memory baseURI = "https://idblk.com/licencia/?id=";
     
     uint256 uniqueCode = getUniqueCode(_tokenId);
-    require(uniqueCode >= YOTOCO_MIN && uniqueCode <= YOTOCO_MAX, "El token esta fuera del rango de Yotoco");
+    require(uniqueCode >= RANGO_MIN && uniqueCode <= RANGO_MAX, "El token esta fuera del rango");
     
     string memory uniqueCodeString;
     
-    if (uniqueCode >= YOTOCO_MIN && uniqueCode <= YOTOCO_MAX) {
+    if (uniqueCode >= RANGO_MIN && uniqueCode <= RANGO_MAX) {
         uniqueCodeString = uint256ToString(uniqueCode);
     } else {
         // Ajustar el uniqueCode para reflejar el cambio en el rango
-        uint256 adjustedUniqueCode = uniqueCode - (YOTOCO_MIN - 1); // Restar (YOTOCO_MIN - 1) para ajustar el rango
+        uint256 adjustedUniqueCode = uniqueCode - (RANGO_MIN - 1); // Restar (RANGO_MIN - 1) para ajustar el rango
         uniqueCodeString = uint256ToString(adjustedUniqueCode);
     }
     
@@ -216,7 +216,7 @@ contract Licencia_CO_VA_Yotoco is ERC721Enumerable, Ownable {
 
         uint256 uniqueCode;
         // Verificar si el token está en el rango de Yotoco
-        if (_tokenId >= YOTOCO_MIN && _tokenId <= YOTOCO_MAX) {
+        if (_tokenId >= RANGO_MIN && _tokenId <= RANGO_MAX) {
             uniqueCode = _tokenId;
         } else {
             uniqueCode = MAX_LICENSES - _tokenId + 1; // Invertir el rango para Darien
