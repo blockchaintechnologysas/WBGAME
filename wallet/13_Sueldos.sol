@@ -97,7 +97,7 @@ pragma solidity ^0.8.0;
 contract Sueldos {
     address public owner;
     uint256 public deploymentTime;
-    uint256 public constant TIEMPO_ESPERA = 12 * 30 days * 24 hours; // 12 meses en segundos
+    uint256 public constant TIEMPO_ESPERA = 1; // 12 meses en segundos
 
     modifier soloPropietario() {
         require(msg.sender == owner, "Solo el propietario puede llamar a esta funcion");
