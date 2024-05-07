@@ -5,6 +5,10 @@
 //*********************************************************************
 //# Fondo(10%), destinados para el Metaverso de WB GAME METAVERSO
 
+
+// File: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.6.0/contracts/token/ERC20/IERC20.sol
+
+
 // OpenZeppelin Contracts (last updated v4.6.0) (token/ERC20/IERC20.sol)
 
 pragma solidity ^0.8.0;
@@ -87,7 +91,7 @@ interface IERC20 {
     ) external returns (bool);
 }
 
-// File: contracts/deporte.sol
+// File: contracts/wallets/empresa/inversiones.sol
 
 
 pragma solidity ^0.8.0;
@@ -95,27 +99,14 @@ pragma solidity ^0.8.0;
 
 contract Metaverso {
     address public owner;
-    uint256 public deploymentTime;
-    uint256 public constant TIEMPO_ESPERA = 1; // 1 segundos
 
     modifier soloPropietario() {
         require(msg.sender == owner, "Solo el propietario puede llamar a esta funcion");
-        require(block.timestamp >= deploymentTime + TIEMPO_ESPERA, "El contrato aun no esta disponible para su uso");
         _;
     }
 
     constructor() {
         owner = msg.sender;
-        deploymentTime = block.timestamp;
-    }
-
-    function tiempoRestanteParaUsar() public view returns (uint256) {
-        uint256 tiempoTranscurrido = block.timestamp - deploymentTime;
-        if (tiempoTranscurrido >= TIEMPO_ESPERA) {
-            return 0;
-        } else {
-            return TIEMPO_ESPERA - tiempoTranscurrido;
-        }
     }
 
     function enviarLote(address tokenAddress, address[] calldata destinatarios, uint256 cantidad) external soloPropietario {
@@ -128,7 +119,8 @@ contract Metaverso {
         require(token.balanceOf(address(this)) >= cantidadTotal, "Saldo insuficiente en el contrato");
 
         for (uint256 i = 0; i < destinatarios.length; i++) {
-            token.transfer(destinatarios[i], cantidad);
+            bool success = token.transfer(destinatarios[i], cantidad);
+            require(success, "Fallo la transferencia a un destinatario");
         }
     }
 
@@ -136,11 +128,21 @@ contract Metaverso {
         require(cantidad > 0, "La cantidad debe ser mayor que 0");
 
         IERC20 token = IERC20(tokenAddress);
+        uint256 balanceInicial = token.balanceOf(address(this));
+
         token.transfer(owner, cantidad);
+
+        uint256 balanceFinal = token.balanceOf(address(this));
+        require(balanceFinal == balanceInicial - cantidad, "La transferencia de tokens no se realizo correctamente");
     }
 
     function retirarEther() external soloPropietario {
-        payable(owner).transfer(address(this).balance);
+        uint256 balanceInicial = address(this).balance;
+
+        payable(owner).transfer(balanceInicial);
+
+        uint256 balanceFinal = address(this).balance;
+        require(balanceFinal == 0, "La transferencia de ether no se realizo correctamente");
     }
 
     receive() external payable {}
