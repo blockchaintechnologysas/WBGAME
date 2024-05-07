@@ -3,7 +3,7 @@
 //*********************************************************************
 // BLOCKCHAIN TECHNOLOGY SOLUTIONS AND ARTIFICIAL INTELLIGENCE AI S.A.S
 //*********************************************************************
-//# Fondo(18%), para Inversiones de WB GAME METAVERSO
+//# Fondo(18%), para Inversiones en Tecnologia de WB GAME METAVERSO
 
 
 // File: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.6.0/contracts/token/ERC20/IERC20.sol
