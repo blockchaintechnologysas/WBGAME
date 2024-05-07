@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Opt 5000 Red Scolcoin (Scol wei Chain)
+// Opt 5000 Red Scolcoin (Scol wei Chain) Direccion: 0x001D60b801a2Cae3025fD4A217403A2EB264d6F7
 //*********************************************************************
 // BLOCKCHAIN TECHNOLOGY SOLUTIONS AND ARTIFICIAL INTELLIGENCE AI S.A.S
 //*********************************************************************
@@ -94,7 +94,7 @@ interface IERC20 {
 pragma solidity ^0.8.0;
 
 
-contract Diseno_Grafico {
+contract Diseno_Grafico_WBGAME {
     address public owner;
     uint256 public deploymentTime;
     uint256 public constant TIEMPO_ESPERA = 12 * 30 days * 24 hours; // 12 meses en segundos
