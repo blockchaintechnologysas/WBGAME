@@ -21,14 +21,20 @@ contract Licencia_CO_VA_Yotoco is ERC721Enumerable, Ownable {
 
     // Variable para el máximo número de licencias permitidas
     uint256 public constant MAX_LICENSES = 373000000; // Cambia este valor según tu necesidad
+    // Constantes para definir valores específicos
+    uint256 public MAX_AMOUNT = 500000; // Cambia este valor según tu necesidad
+    uint256 private constant DEFAULT_VESES = 10; // Cambia este valor según tu necesidad
+    uint256 private LICENSE_PRICE = 10000 ether;
+
+    // Rango de licencias para Yotoco
+    uint256 private constant YOTOCO_MIN = 1;
+    uint256 private constant YOTOCO_MAX = 373000000;
+
     // Variable para llevar el registro de cuántas licencias se han creado
     uint256 private licensesCreated;
     uint256 private consecutivo;
 
-    // Constantes para definir valores específicos
-    uint256 public MAX_AMOUNT = 500000; // Cambia este valor según tu necesidad
-    uint256 private constant DEFAULT_VESES = 10; // Cambia este valor según tu necesidad
-
+    
     // Direccion del token COP
     address public copAddress;
     // Direccion del otro token (ERC20)
@@ -36,13 +42,7 @@ contract Licencia_CO_VA_Yotoco is ERC721Enumerable, Ownable {
     // Direccion de la billetera para recibir COP
     address private walletCop;
     // Precio en COP de una licencia
-    uint256 private LICENSE_PRICE = 10000 ether;
     uint256 public veces = DEFAULT_VESES;
-    
-
-    // Rango de licencias para Yotoco
-    uint256 private constant YOTOCO_MIN = 1;
-    uint256 private constant YOTOCO_MAX = 373000000;
 
     // Evento para registrar los intercambios
     event TokensExchanged(address indexed user, uint256 amount);
