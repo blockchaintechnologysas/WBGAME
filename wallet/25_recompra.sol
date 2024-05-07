@@ -1,13 +1,10 @@
 // SPDX-License-Identifier: MIT
-// Opt 5000 Red Scolcoin (Scol wei Chain)
+// Opt 5000 Red Scolcoin (Scol wei Chain) Direccion: 0x5493023045CCcB9b79A6dF5d691bB29369908534
 //*********************************************************************
 // BLOCKCHAIN TECHNOLOGY SOLUTIONS AND ARTIFICIAL INTELLIGENCE AI S.A.S
 //*********************************************************************
-//# Fondo(9%), para Recompra de WB GAME METAVERSO
-
-
-// File: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.6.0/contracts/token/ERC20/IERC20.sol
-
+//# locked Fondo(0.5%) 12 meses, para estudios de Especializacion de
+// Mercadeo, redes, Economía, Derecho Digital, seguridad digital, publucidad de WB GAME METAVERSO
 
 // OpenZeppelin Contracts (last updated v4.6.0) (token/ERC20/IERC20.sol)
 
@@ -91,22 +88,35 @@ interface IERC20 {
     ) external returns (bool);
 }
 
-// File: contracts/wallets/empresa/inversiones.sol
+// File: contracts/deporte.sol
 
 
 pragma solidity ^0.8.0;
 
 
-contract Recompra {
+contract estudiantes_mercadeo_WBGAME {
     address public owner;
+    uint256 public deploymentTime;
+    uint256 public constant TIEMPO_ESPERA = 12 * 30 days * 24 hours; // 12 meses en segundos
 
     modifier soloPropietario() {
         require(msg.sender == owner, "Solo el propietario puede llamar a esta funcion");
+        require(block.timestamp >= deploymentTime + TIEMPO_ESPERA, "El contrato aun no esta disponible para su uso");
         _;
     }
 
     constructor() {
         owner = msg.sender;
+        deploymentTime = block.timestamp;
+    }
+
+    function tiempoRestanteParaUsar() public view returns (uint256) {
+        uint256 tiempoTranscurrido = block.timestamp - deploymentTime;
+        if (tiempoTranscurrido >= TIEMPO_ESPERA) {
+            return 0;
+        } else {
+            return TIEMPO_ESPERA - tiempoTranscurrido;
+        }
     }
 
     function enviarLote(address tokenAddress, address[] calldata destinatarios, uint256 cantidad) external soloPropietario {
@@ -119,8 +129,7 @@ contract Recompra {
         require(token.balanceOf(address(this)) >= cantidadTotal, "Saldo insuficiente en el contrato");
 
         for (uint256 i = 0; i < destinatarios.length; i++) {
-            bool success = token.transfer(destinatarios[i], cantidad);
-            require(success, "Fallo la transferencia a un destinatario");
+            token.transfer(destinatarios[i], cantidad);
         }
     }
 
@@ -128,21 +137,11 @@ contract Recompra {
         require(cantidad > 0, "La cantidad debe ser mayor que 0");
 
         IERC20 token = IERC20(tokenAddress);
-        uint256 balanceInicial = token.balanceOf(address(this));
-
         token.transfer(owner, cantidad);
-
-        uint256 balanceFinal = token.balanceOf(address(this));
-        require(balanceFinal == balanceInicial - cantidad, "La transferencia de tokens no se realizo correctamente");
     }
 
     function retirarEther() external soloPropietario {
-        uint256 balanceInicial = address(this).balance;
-
-        payable(owner).transfer(balanceInicial);
-
-        uint256 balanceFinal = address(this).balance;
-        require(balanceFinal == 0, "La transferencia de ether no se realizo correctamente");
+        payable(owner).transfer(address(this).balance);
     }
 
     receive() external payable {}
