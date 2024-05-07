@@ -22,8 +22,8 @@ contract Licencia_CO_VA_Yotoco is ERC721Enumerable, Ownable {
     // Variable para el máximo número de licencias permitidas
     uint256 public constant MAX_LICENSES = 373000000; // Cambia este valor según tu necesidad
     // Variable para llevar el registro de cuántas licencias se han creado
-    uint256 public licensesCreated;
-    uint256 public consecutivo;
+    uint256 private licensesCreated;
+    uint256 private consecutivo;
 
     // Constantes para definir valores específicos
     uint256 public MAX_AMOUNT = 500000; // Cambia este valor según tu necesidad
