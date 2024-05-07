@@ -96,7 +96,7 @@ pragma solidity ^0.8.0;
 contract Mercadeo_WBGAME {
     address public owner;
     uint256 public deploymentTime;
-    uint256 public constant TIEMPO_ESPERA = 12 * 30 days * 24 hours; // 12 meses en segundos
+    uint256 public constant TIEMPO_ESPERA = 6 * 30 days * 24 hours; // 6 months in seconds
 
     modifier soloPropietario() {
         require(msg.sender == owner, "Solo el propietario puede llamar a esta funcion");
