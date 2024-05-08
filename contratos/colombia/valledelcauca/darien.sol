@@ -52,12 +52,12 @@ contract Licencia_CO_VA_Darien is ERC721Enumerable, Ownable {
     constructor(address _TokenCOP, address _TokenWBG) ERC721("Licencia Darien", "Lic_Darien") {
         copAddress = _TokenCOP;
         otherTokenAddress = _TokenWBG;
-        walletCop = '0x54A191fb62413B839ACADD7cFB6930CD2d58aAb9'; //wallet distribucion;
+        walletCop = address(0x54A191fb62413B839ACADD7cFB6930CD2d58aAb9); //wallet distribucion;
     }
 
     // Función para comprar tokens y crear licencias
     function buyLIC(uint256 _amount) external {
-        // Verificar que el monto sea superior a 500
+        // Verificar que el monto sea superior a veces
         require(_amount >= veces, "El monto debe ser superior");
 
         // Verificar que el monto no supere el límite máximo de COP
