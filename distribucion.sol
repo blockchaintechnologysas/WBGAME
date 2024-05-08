@@ -5,8 +5,7 @@
 //*********************************************************************
 //# Wallet de Distribucion WB GAME METAVERSO
 
-
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.0;
 
 /**
  * @dev Interface of the ERC-20 standard as defined in the ERC.
