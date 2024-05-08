@@ -20,10 +20,10 @@ contract Licencia_CO_VA_Darien is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
     // Variable para el máximo número de licencias permitidas
-    uint256 public constant MAX_LICENSES = 1527000000; // Cambia este valor según tu necesidad
+    uint256 public constant MAX_LICENSES = 1527000000; // total metros cuadrados
     // Constantes para definir valores específicos
-    uint256 public MAX_AMOUNT = 300000; // Cambia este valor según tu necesidad
-    uint256 private constant DEFAULT_VESES = 500; // Cambia este valor según tu necesidad
+    uint256 public MAX_AMOUNT = 300000; // Cant maxima a comprar
+    uint256 private constant MIN_AMOUNT = 500; // Cant minima a comprar
     // Precio en COP de una licencia
     uint256 private LICENSE_PRICE = 100 ether;
 
@@ -41,7 +41,7 @@ contract Licencia_CO_VA_Darien is ERC721Enumerable, Ownable {
     address public otherTokenAddress;
     // Direccion de la billetera para recibir COP
     address private walletCop;
-    uint256 public veces = DEFAULT_VESES;
+    uint256 public veces = MIN_AMOUNT;
 
     // Evento para registrar los intercambios
     event TokensExchanged(address indexed user, uint256 amount);
@@ -49,10 +49,10 @@ contract Licencia_CO_VA_Darien is ERC721Enumerable, Ownable {
     event LicensePurchased(address indexed user, uint256 tokenId);
 
     // Constructor del contrato
-    constructor(address _TokenCOP, address _TokenWBG, address _walletCOP) ERC721("Licencia Darien", "Lic_Darien") {
+    constructor(address _TokenCOP, address _TokenWBG) ERC721("Licencia Darien", "Lic_Darien") {
         copAddress = _TokenCOP;
         otherTokenAddress = _TokenWBG;
-        walletCop = _walletCOP;
+        walletCop = '0x54A191fb62413B839ACADD7cFB6930CD2d58aAb9'; //wallet distribucion;
     }
 
     // Función para comprar tokens y crear licencias
