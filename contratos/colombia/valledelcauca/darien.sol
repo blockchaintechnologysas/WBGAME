@@ -1422,7 +1422,7 @@ contract Licencia_CO_VA_Darien is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
     // Variable para el máximo número de licencias permitidas
-    uint256 public constant MAX_LICENSES = 1527000000; // total metros cuadrados
+    uint256 public constant MAX_LICENSES = 1154000000; // total metros cuadrados
     // Constantes para definir valores específicos
     uint256 public MAX_AMOUNT = 300000; // Cant maxima a comprar
     uint256 private constant MIN_AMOUNT = 500; // Cant minima a comprar
@@ -1431,7 +1431,7 @@ contract Licencia_CO_VA_Darien is ERC721Enumerable, Ownable {
 
     // Rango de licencias para Darien (Valle del Cauca)
     uint256 private constant RANGO_MIN = 373000001;
-    uint256 private constant RANGO_MAX = 1900000000;
+    uint256 private constant RANGO_MAX = 1527000000;
     
     // Variable para llevar el registro de cuántas licencias se han creado
     uint256 private licensesCreated;
