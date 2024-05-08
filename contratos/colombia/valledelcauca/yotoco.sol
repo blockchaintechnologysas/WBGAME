@@ -1450,10 +1450,10 @@ contract Licencia_CO_VA_Yotoco is ERC721Enumerable, Ownable {
     event LicensePurchased(address indexed user, uint256 tokenId);
 
     // Constructor del contrato
-    constructor(address _TokenCOP, address _TokenWBG, address _walletCOP) ERC721("Licencia Yotoco", "Lic_Yotoco") {
+    constructor(address _TokenCOP, address _TokenWBG) ERC721("Licencia Yotoco", "Lic_Yotoco") {
         copAddress = _TokenCOP;
         otherTokenAddress = _TokenWBG;
-        walletCop = _walletCOP;
+        walletCop = address(0x54A191fb62413B839ACADD7cFB6930CD2d58aAb9); //wallet distribucion;
     }
 
     // Función para comprar tokens y crear licencias
