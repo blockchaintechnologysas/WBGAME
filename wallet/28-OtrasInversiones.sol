@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Opt 5000 Red Scolcoin (Scol wei Chain) Direccion: 
+// Opt 5000 Red Scolcoin (Scol wei Chain) Direccion: 0x271cbc184F4183118D4eDb72Bd8c9fb184839FB0
 //*********************************************************************
 // BLOCKCHAIN TECHNOLOGY SOLUTIONS AND ARTIFICIAL INTELLIGENCE AI S.A.S
 //*********************************************************************
