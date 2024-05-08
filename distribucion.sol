@@ -88,7 +88,7 @@ interface IERC20 {
 pragma solidity ^0.8.0;
 
 
-contract DistribucionTokens {
+contract Distribucion_WBGAME {
     address public owner;
     uint256 private constant PORCENTAJE_TOTAL = 1000; // Total de 1000 para manejar decimales (0.5% = 5 de 1000)
 
@@ -120,7 +120,7 @@ contract DistribucionTokens {
         wallets.push(Wallet(0x5D92CCe873B1A30762796f60444252700a8dfbEA, 5)); // 5-Mercadeo 0.5%
         wallets.push(Wallet(0x7971cEAA6A060061fa892C13f48422FBC319f1D9, 10)); // 6-Eventos Blockchain 1%
         wallets.push(Wallet(0xA09756f307169048e260aa2E47676F467d5BAd92, 10)); // 7-Asesor Al 1%
-        wallets.push(Wallet(0x989e3194Db6Aae37bEeCfacE9d1ec4de47048563, 10)); // 8-Asesor 1%
+        wallets.push(Wallet(0x989e3194Db6Aae37bEeCfacE9d1ec4de47048563, 10)); // 8-Asesor MC 1%
         wallets.push(Wallet(0x7BFC7F4846a7668018adFcd2e992b7eA0353d201, 5)); // 9-Estudiantes multimedia 0.5%
         wallets.push(Wallet(0x001D60b801a2Cae3025fD4A217403A2EB264d6F7, 5)); // 10-Estudiantes diseño 0.5%
         wallets.push(Wallet(0xd5541c13e1BEC4eefB1d95BFbdA84d3c97ab5236, 5)); // 11-Realidad Aumentada (AR) 0.5%
