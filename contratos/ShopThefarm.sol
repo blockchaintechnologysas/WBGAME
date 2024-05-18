@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: MIT
  File: https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.6.0/contracts/token/ERC20/IERC20.sol
- Opt 5000 Red Scolcoin (Scol wei Chain)
+ Opt 5000 Red Scolcoin (Scol wei Chain) direccion: 0x089328aF98ec725568D1750d3C48b1D81926B02E
 *********************************************************************
  BLOCKCHAIN TECHNOLOGY SOLUTIONS AND ARTIFICIAL INTELLIGENCE AI S.A.S
 *********************************************************************
