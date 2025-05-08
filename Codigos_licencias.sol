@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-// Opt 5000 Red Scolcoin (Scol wei Chain) direccion: 0x3B4528C2C66F829BA4F9A3C7a1bE600c51E7858B
+// Opt 5000 Red Scolcoin (Scol wei Chain) direccion: 
 //*********************************************************************
 // BLOCKCHAIN TECHNOLOGY SOLUTIONS AND ARTIFICIAL INTELLIGENCE AI S.A.S
 //*********************************************************************
@@ -17,8 +17,6 @@ contract Codigos_Licencias_WBGAME {
         string inicio;
         string idfinal;
         uint256 precio;
-        uint256 minimo;
-        uint256 maximo;
     }
     
     // Mapeo para almacenar los datos por municipio
@@ -37,7 +35,7 @@ contract Codigos_Licencias_WBGAME {
     }
 
     // Evento para registrar la actualización de los datos
-    event DatosActualizados(string municipio, string nuevoInicio, string nuevoFinal, uint256 nuevoPrecio, uint256 nuevoMinimo, uint256 nuevoMaximo);
+    event DatosActualizados(string municipio, string nuevoInicio, string nuevoFinal, uint256 nuevoPrecio);
 
     // Constructor
     constructor() {
@@ -52,9 +50,7 @@ contract Codigos_Licencias_WBGAME {
         string memory _departamento,
         string memory _inicio,
         string memory _final,
-        uint256 _precio,
-        uint256 _minimo,
-        uint256 _maximo
+        uint256 _precio
     ) public onlyOwner {
         require(bytes(_pais).length > 0, "El campo 'pais' es obligatorio");
         require(bytes(_superficie).length > 0, "El campo 'superficie' es obligatorio");
@@ -63,12 +59,11 @@ contract Codigos_Licencias_WBGAME {
         require(bytes(_inicio).length > 0, "El campo 'inicio' es obligatorio");
         require(bytes(_final).length > 0, "El campo 'final' es obligatorio");
         require(_precio > 0, "El campo 'precio' debe ser mayor que cero");
-        require(_minimo < _maximo, "El valor minimo debe ser menor que el valor maximo");
         require(datosPorMunicipio[_municipio].precio == 0, "El municipio ya existe");
 
-        datosPorMunicipio[_municipio] = Datos(_pais, _superficie, _municipio, _departamento, _inicio, _final, _precio, _minimo, _maximo);
+        datosPorMunicipio[_municipio] = Datos(_pais, _superficie, _municipio, _departamento, _inicio, _final, _precio);
         totalDatos++; // Incrementar el contador de datos
-        emit DatosActualizados(_municipio, _inicio, _final, _precio, _minimo, _maximo);
+        emit DatosActualizados(_municipio, _inicio, _final, _precio);
     }
 
     // Función para buscar datos por municipio
@@ -78,9 +73,7 @@ contract Codigos_Licencias_WBGAME {
         string memory departamento,
         string memory inicio,
         string memory idfinal,
-        uint256 precio,
-        uint256 minimo,
-        uint256 maximo
+        uint256 precio
     ) {
         Datos memory datos = datosPorMunicipio[_municipio];
         return (
@@ -89,9 +82,7 @@ contract Codigos_Licencias_WBGAME {
             datos.departamento,
             datos.inicio,
             datos.idfinal,
-            datos.precio,
-            datos.minimo,
-            datos.maximo
+            datos.precio
         );
     }
 
@@ -106,16 +97,13 @@ contract Codigos_Licencias_WBGAME {
         string memory _superficie,
         string memory _inicio,
         string memory _final,
-        uint256 _precio,
-        uint256 _minimo,
-        uint256 _maximo
+        uint256 _precio
     ) public onlyOwner {
         require(bytes(_superficie).length > 0, "El campo 'superficie' es obligatorio");
         require(bytes(_municipio).length > 0, "El campo 'municipio' es obligatorio");
         require(bytes(_inicio).length > 0, "El campo 'inicio' es obligatorio");
         require(bytes(_final).length > 0, "El campo 'final' es obligatorio");
         require(_precio > 0, "El campo 'precio' debe ser mayor que cero");
-        require(_minimo < _maximo, "El valor minimo debe ser menor que el valor maximo");
         require(datosPorMunicipio[_municipio].precio > 0, "El municipio no existe");
 
         Datos storage datos = datosPorMunicipio[_municipio];
@@ -123,9 +111,7 @@ contract Codigos_Licencias_WBGAME {
         datos.inicio = _inicio;
         datos.idfinal = _final;
         datos.precio = _precio;
-        datos.minimo = _minimo;
-        datos.maximo = _maximo;
 
-        emit DatosActualizados(_municipio, _inicio, _final, _precio, _minimo, _maximo);
+        emit DatosActualizados(_municipio, _inicio, _final, _precio);
     }
 }
