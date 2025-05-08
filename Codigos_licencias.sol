@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-// Opt 5000 Red Scolcoin (Scol wei Chain) direccion: 
+// Opt 5000 Red Scolcoin (Scol wei Chain) direccion: 0xF877896F718EAd0E583F1Dc435CDfaB79169B053
 //*********************************************************************
 // BLOCKCHAIN TECHNOLOGY SOLUTIONS AND ARTIFICIAL INTELLIGENCE AI S.A.S
 //*********************************************************************
